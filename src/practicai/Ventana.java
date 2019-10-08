@@ -45,7 +45,7 @@ public class Ventana {
     JButton seleccionar;
     JButton volver,volver1,volver2,volver3,volver4;
     JPanel cargardatos, jugar, juegocargado, instruc, cred, niv;
-    JLabel en1, en2, cb1,cb2,cb3,cb4,cb5;
+    JLabel en1, en2, cb1,cb2,cb3,cb4,cb5,cb6,cb7,cb8,cb9;
     
     JButton juegonuevo, cargar, salir, instrucciones, creditos, niveles;
     
@@ -74,7 +74,7 @@ public class Ventana {
     ImageIcon enano;
     ImageIcon enana;
     ImageIcon cu1,cu2,cu3,cu4,cu5;
-    Boolean pri = false, seg = false , ter = false, cuart = false , quin = false;
+    Boolean pri = false, seg = false , ter = false, cuart = false , quin = false, sext = false, sept = false, oct = false, non = false;
     int score;
     
     Action action1;
@@ -157,13 +157,22 @@ public class Ventana {
         cb2 = new JLabel(cu2);
         cb3 = new JLabel(cu3);
         cb4 = new JLabel(cu4);
-        cb5 = new JLabel(cu5);
+        cb5 = new JLabel(cu1);
+        cb6 = new JLabel(cu2);
+        cb7 = new JLabel(cu3);
+        cb8 = new JLabel(cu4);
+        cb9 = new JLabel(cu1);
+        
         
         cb1.setBounds(0, 0, cu1.getIconWidth(), cu1.getIconHeight());
         cb2.setBounds(cu1.getIconWidth(), 0,cu1.getIconWidth() , cu1.getIconHeight());
         cb3.setBounds(cu1.getIconWidth()*2, 0, cu1.getIconWidth(), cu1.getIconHeight());
         cb4.setBounds(cu1.getIconWidth()*3, 0, cu1.getIconWidth(), cu1.getIconHeight());
         cb5.setBounds(cu1.getIconWidth()*4, 0, cu1.getIconWidth(), cu1.getIconHeight());
+        cb6.setBounds(cu1.getIconWidth()*5, 0, cu1.getIconWidth(), cu1.getIconHeight());
+        cb7.setBounds(cu1.getIconWidth()*6, 0, cu1.getIconWidth(), cu1.getIconHeight());
+        cb8.setBounds(cu1.getIconWidth()*7, 0, cu1.getIconWidth(), cu1.getIconHeight());
+        cb9.setBounds(cu1.getIconWidth()*8, 0, cu1.getIconWidth(), cu1.getIconHeight());
         
         jugar.add(en1);
         jugar.add(cb1);
@@ -171,6 +180,10 @@ public class Ventana {
         jugar.add(cb3);
         jugar.add(cb4);
         jugar.add(cb5);
+        jugar.add(cb6);
+        jugar.add(cb7);
+        jugar.add(cb8);
+        jugar.add(cb9);
         
         ventana.addKeyListener(new KeyAdapter(){
                 public void keyPressed(KeyEvent e){
@@ -316,7 +329,7 @@ public class Ventana {
         principal.add(instruc,"6");
         principal.add(cred,"7");
         principal.add(niv,"8");
-        cards.show(principal,"4");
+        cards.show(principal,"1");
         
          tiempo = new Timer(1000, new ActionListener(){
                     @Override
@@ -326,12 +339,12 @@ public class Ventana {
                         //Pues este timer corre cada segundo
                         if(orden == null){
                             //Generamos los numeros
-                            orden = new int[5];
+                            orden = new int[9];
                             Random r = new Random();
         
                             int flag = 0;
-                            for(int x = 0;x<5;x++){
-                                int ayudante = r.nextInt((5-1)+1) + 1;
+                            for(int x = 0;x<9;x++){
+                                int ayudante = r.nextInt((9-1)+1) + 1;
                                         if(x==0){
                                             orden[x] = ayudante;
                                         }else if(x>0){
@@ -352,7 +365,7 @@ public class Ventana {
                                     }
                         }
                         //Ahora, con el orden guardado, procedemos a hacer la revision cada 4 segundos
-                        if(segundos%4==0 && segundos <20){
+                        if(segundos%4==0 && segundos <36){
                             switch(orden[posorden]){
                                 case 1:
                                     pri = true;
@@ -368,6 +381,18 @@ public class Ventana {
                                     break;
                                 case 5:
                                     quin = true;
+                                    break;
+                                case 6:
+                                    sext = true;
+                                    break;
+                                case 7:
+                                    sept = true;
+                                    break;
+                                case 8:
+                                    oct = true;
+                                    break;
+                                case 9:
+                                    non = true;
                                     break;
                             }
                             //Ya en este punto, hemos verificado cual esta listo
@@ -395,6 +420,22 @@ public class Ventana {
                             cb5.setLocation(cb5.getX(), cb5.getY()+20);
                         }
                         
+                        if(sext == true){
+                            cb6.setLocation(cb6.getX(), cb6.getY()+20);
+                        }
+                        
+                        if(sept == true){
+                            cb7.setLocation(cb7.getX(), cb7.getY()+20);
+                        }
+                        
+                        if(oct == true){
+                            cb8.setLocation(cb8.getX(), cb8.getY()+20);
+                        }
+                        
+                        if(non == true){
+                            cb9.setLocation(cb9.getX(), cb9.getY()+20);
+                        }
+                        
                         //Todo lo anterior funciona
                         //En este punto, hacemos verificaciones y luego limpiamos todo al terminar
                         
@@ -411,7 +452,7 @@ public class Ventana {
                         }
                         
                         if(cb2.getY()>= en1.getY() && cb2.getX()<= en1.getX() && cb2.getX()+cb2.getWidth()>=en1.getX() && seg == true){
-                            score+=10;
+                            score+=20;
                             System.out.print(score);
                             cb2.setVisible(false);
                             seg = false;
@@ -423,7 +464,7 @@ public class Ventana {
                         }
                         
                         if(cb3.getY()>= en1.getY() && cb3.getX()<= en1.getX() && cb3.getX()+cb3.getWidth()>=en1.getX() && ter == true){
-                            score+=10;
+                            score+=30;
                             System.out.print(score);
                             cb3.setVisible(false);
                             ter = false;
@@ -435,7 +476,7 @@ public class Ventana {
                         }
                         
                         if(cb4.getY()>= en1.getY() && cb4.getX()<= en1.getX() && cb4.getX()+cb4.getWidth()>=en1.getX() && cuart == true){
-                            score+=10;
+                            score+=40;
                             System.out.print(score);
                             cb4.setVisible(false);
                             cuart = false;
@@ -458,26 +499,87 @@ public class Ventana {
                             System.out.println(score);
                         }
                         
+                        if(cb6.getY()>= en1.getY() && cb6.getX()<= en1.getX() && cb6.getX()+cb6.getWidth()>=en1.getX() && sext == true){
+                            score+=20;
+                            System.out.print(score);
+                            cb6.setVisible(false);
+                            sext = false;
+                        }else if(cb6.getY()>= en1.getY() && cb6.getX()>en1.getX()+en1.getWidth() && sext == true || cb6.getY()>= en1.getY() && cb6.getX()+cb6.getWidth()<en1.getX() && sext == true){
+                            cb6.setVisible(false);
+                            score-=10;
+                            sext = false;
+                            System.out.println(score);
+                        }
+                        
+                        if(cb7.getY()>= en1.getY() && cb7.getX()<= en1.getX() && cb7.getX()+cb7.getWidth()>=en1.getX() && sept == true){
+                            score+=30;
+                            System.out.print(score);
+                            cb7.setVisible(false);
+                            sept = false;
+                        }else if(cb7.getY()>= en1.getY() && cb7.getX()>en1.getX()+en1.getWidth() && sept == true || cb7.getY()>= en1.getY() && cb7.getX()+cb7.getWidth()<en1.getX() && sept == true){
+                            cb7.setVisible(false);
+                            score-=10;
+                            sept = false;
+                            System.out.println(score);
+                        }
+                        
+                        if(cb8.getY()>= en1.getY() && cb8.getX()<= en1.getX() && cb8.getX()+cb8.getWidth()>=en1.getX() && oct == true){
+                            score+=40;
+                            System.out.print(score);
+                            cb8.setVisible(false);
+                            oct = false;
+                        }else if(cb8.getY()>= en1.getY() && cb8.getX()>en1.getX()+en1.getWidth() && oct == true || cb8.getY()>= en1.getY() && cb8.getX()+cb8.getWidth()<en1.getX() && oct== true){
+                            cb8.setVisible(false);
+                            score-=10;
+                            oct = false;
+                            System.out.println(score);
+                        }
+                        
+                        if(cb9.getY()>= en1.getY() && cb9.getX()<= en1.getX() && cb9.getX()+cb9.getWidth()>=en1.getX() && non == true){
+                            score+=10;
+                            System.out.print(score);
+                            cb9.setVisible(false);
+                            non = false;
+                        }else if(cb9.getY()>= en1.getY() && cb9.getX()>en1.getX()+en1.getWidth() && non == true || cb9.getY()>= en1.getY() && cb9.getX()+cb9.getWidth()<en1.getX() && non == true){
+                            cb9.setVisible(false);
+                            score-=10;
+                            non = false;
+                            System.out.println(score);
+                        }
+                        
                         //Todos funcionan como deben, ahora, a reiniciar todo
                         
                         segundos++;
                         
-                        if(pri==false && seg==false && ter == false && cuart == false && quin == false){
+                        if(pri==false && seg==false && ter == false && cuart == false && quin == false && sext == false && sept == false && oct == false && non == false){
                             cb1.setVisible(true);
                             cb2.setVisible(true);
                             cb3.setVisible(true);
                             cb4.setVisible(true);
                             cb5.setVisible(true);
+                            cb6.setVisible(true);
+                            cb7.setVisible(true);
+                            cb8.setVisible(true);
+                            cb9.setVisible(true);
+                          
                             pri = false;
                             seg = false;
                             ter = false;
                             cuart = false;
                             quin = false;
+                            sext = false;
+                            sept = false;
+                            oct = false;
+                            non = false;
                             cb1.setLocation(cb1.getX(), 0);
                             cb2.setLocation(cb2.getX(), 0);
                             cb3.setLocation(cb3.getX(), 0);
                             cb4.setLocation(cb4.getX(), 0);
                             cb5.setLocation(cb5.getX(), 0);
+                            cb6.setLocation(cb6.getX(), 0);
+                            cb7.setLocation(cb7.getX(), 0);
+                            cb8.setLocation(cb8.getX(), 0);
+                            cb9.setLocation(cb9.getX(), 0);
                             segundos = 0;
                             posorden = 0;
                             orden = null;
@@ -586,26 +688,51 @@ public class Ventana {
                 carreralist.setSelectedIndex(0);
             }else if(e.getSource()==seleccionar){
                 //Aqui tomamos los datos de usuario, y verificamos el sexo para cambiar el personaje
+                int f  = userlist.getSelectedIndex();
+                tok = new StringTokenizer(usuarios[f]);
+                System.out.println(usuarios[f]);
+                String useless = tok.nextToken(", ");
+                String sex = tok.nextToken(", ");
+                if(sex.equals("Masculino")){
+                    en1.setIcon(enano);
+                    en1.setBounds(200, 150, enano.getIconWidth(), enano.getIconHeight());
+                }else if(sex.equals("Femenino")){
+                    en1.setIcon(enana);
+                    en1.setBounds(200, 150, enana.getIconWidth(), enana.getIconHeight());
+                }
                 cards.show(principal, "3");
             }else if(e.getSource()==juegonuevo){
                 //Aqui va el timer para el juego nuevo
                 cb1.setVisible(true);
-                cb2.setVisible(true);
-                cb3.setVisible(true);
-                cb4.setVisible(true);
-                cb5.setVisible(true);
-                cb1.setLocation(cb1.getX(), 0);
-                cb2.setLocation(cb2.getX(), 0);
-                cb3.setLocation(cb3.getX(), 0);
-                cb4.setLocation(cb4.getX(), 0);
-                cb5.setLocation(cb5.getX(), 0);
-                pri = false;
+                            cb2.setVisible(true);
+                            cb3.setVisible(true);
+                            cb4.setVisible(true);
+                            cb5.setVisible(true);
+                            cb6.setVisible(true);
+                            cb7.setVisible(true);
+                            cb8.setVisible(true);
+                            cb9.setVisible(true);
+                          
+                            pri = false;
                             seg = false;
                             ter = false;
                             cuart = false;
                             quin = false;
-                segundos = 0;
-                posorden = 0;
+                            sext = false;
+                            sept = false;
+                            oct = false;
+                            non = false;
+                            cb1.setLocation(cb1.getX(), 0);
+                            cb2.setLocation(cb2.getX(), 0);
+                            cb3.setLocation(cb3.getX(), 0);
+                            cb4.setLocation(cb4.getX(), 0);
+                            cb5.setLocation(cb5.getX(), 0);
+                            cb6.setLocation(cb6.getX(), 0);
+                            cb7.setLocation(cb7.getX(), 0);
+                            cb8.setLocation(cb8.getX(), 0);
+                            cb9.setLocation(cb9.getX(), 0);
+                            segundos = 0;
+                            posorden = 0;
                 orden = null;
                 tiempo.stop();
                 cards.show(principal, "3");
@@ -627,29 +754,37 @@ public class Ventana {
                 cards.show(principal, "8");
             }else if(e.getSource()==volver || e.getSource()==volver1 || e.getSource()==volver2 || e.getSource()==volver3 || e.getSource()==volver4){
                 if(e.getSource()==volver){
-                    tiempo.stop();
-                    cb1.setLocation(0, 0);
-                    cb2.setLocation(cb1.getWidth(), 0);
-                    cb3.setLocation(cb1.getWidth()*2, 0);
-                    cb4.setLocation(cb1.getWidth()*3, 0);
-                    cb5.setLocation(cb1.getWidth()*4, 0);
+                    
                     cb1.setVisible(true);
-                    cb2.setVisible(true);
-                    cb3.setVisible(true);
-                    cb4.setVisible(true);
-                    cb5.setVisible(true);
-                    pri = false;
+                            cb2.setVisible(true);
+                            cb3.setVisible(true);
+                            cb4.setVisible(true);
+                            cb5.setVisible(true);
+                            cb6.setVisible(true);
+                            cb7.setVisible(true);
+                            cb8.setVisible(true);
+                            cb9.setVisible(true);
+                          
+                            pri = false;
                             seg = false;
                             ter = false;
                             cuart = false;
                             quin = false;
-                    cb1.setLocation(cb1.getX(), 0);
-                    cb2.setLocation(cb2.getX(), 0);
-                    cb3.setLocation(cb3.getX(), 0);
-                    cb4.setLocation(cb4.getX(), 0);
-                    cb5.setLocation(cb5.getX(), 0);
-                    segundos = 0;
-                    posorden = 0;
+                            sext = false;
+                            sept = false;
+                            oct = false;
+                            non = false;
+                            cb1.setLocation(cb1.getX(), 0);
+                            cb2.setLocation(cb2.getX(), 0);
+                            cb3.setLocation(cb3.getX(), 0);
+                            cb4.setLocation(cb4.getX(), 0);
+                            cb5.setLocation(cb5.getX(), 0);
+                            cb6.setLocation(cb6.getX(), 0);
+                            cb7.setLocation(cb7.getX(), 0);
+                            cb8.setLocation(cb8.getX(), 0);
+                            cb9.setLocation(cb9.getX(), 0);
+                            segundos = 0;
+                            posorden = 0;
                     orden = null;
                     score = 0;
                     tiempo.stop();
