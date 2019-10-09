@@ -42,7 +42,7 @@ public class Ventana {
     JRadioButton j1, j2;
     JComboBox carreralist;
     JComboBox userlist;
-    JButton seleccionar;
+    JButton seleccionar,nivel1,nivel2;
     JButton volver,volver1,volver2,volver3,volver4;
     JPanel cargardatos, jugar, juegocargado, instruc, cred, niv;
     JLabel en1, en2, cb1,cb2,cb3,cb4,cb5,cb6,cb7,cb8,cb9;
@@ -240,6 +240,13 @@ public class Ventana {
         niv = new JPanel();
         niv.setLayout(null);
         niv.add(volver4);
+        nivel1 = new JButton("Nivel 1");
+        nivel2 = new JButton("Nivel 2");
+        nivel1.setBounds(150, 100, 200, 20);
+        nivel2.setBounds(150, 150, 200, 20);
+        
+        niv.add(nivel1);
+        niv.add(nivel2);
         
         menu = new JPanel();
         menu.setLayout(null);
@@ -320,6 +327,8 @@ public class Ventana {
         volver2.addMouseListener(x);
         volver3.addMouseListener(x);
         volver4.addMouseListener(x);
+        nivel1.addMouseListener(x);
+        nivel2.addMouseListener(x);
         //principal adds
         principal.add(log,"1");
         principal.add(cargardatos,"2");
@@ -446,7 +455,7 @@ public class Ventana {
                             pri = false;
                         }else if(cb1.getY()>= en1.getY() && cb1.getX()>en1.getX()+en1.getWidth() && pri == true || cb1.getY()>= en1.getY() && cb1.getX()+cb1.getWidth()<en1.getX() && pri == true){
                             cb1.setVisible(false);
-                            score-=10;
+                            score-=20;
                             pri = false;
                             System.out.println(score);
                         }
@@ -458,7 +467,7 @@ public class Ventana {
                             seg = false;
                         }else if(cb2.getY()>= en1.getY() && cb2.getX()>en1.getX()+en1.getWidth() && seg == true || cb2.getY()>= en1.getY() && cb2.getX()+cb2.getWidth()<en1.getX() && seg == true){
                             cb2.setVisible(false);
-                            score-=10;
+                            score-=20;
                             seg = false;
                             System.out.println(score);
                         }
@@ -470,7 +479,7 @@ public class Ventana {
                             ter = false;
                         }else if(cb3.getY()>= en1.getY() && cb3.getX()>en1.getX()+en1.getWidth() && ter == true || cb3.getY()>= en1.getY() && cb3.getX()+cb3.getWidth()<en1.getX() && ter == true){
                             cb3.setVisible(false);
-                            score-=10;
+                            score-=20;
                             ter = false;
                             System.out.println(score);
                         }
@@ -482,7 +491,7 @@ public class Ventana {
                             cuart = false;
                         }else if(cb4.getY()>= en1.getY() && cb4.getX()>en1.getX()+en1.getWidth() && cuart == true || cb4.getY()>= en1.getY() && cb4.getX()+cb4.getWidth()<en1.getX() && cuart == true){
                             cb4.setVisible(false);
-                            score-=10;
+                            score-=20;
                             cuart = false;
                             System.out.println(score);
                         }
@@ -494,7 +503,7 @@ public class Ventana {
                             quin = false;
                         }else if(cb5.getY()>= en1.getY() && cb5.getX()>en1.getX()+en1.getWidth() && quin == true || cb5.getY()>= en1.getY() && cb5.getX()+cb5.getWidth()<en1.getX() && quin == true){
                             cb5.setVisible(false);
-                            score-=10;
+                            score-=20;
                             quin = false;
                             System.out.println(score);
                         }
@@ -506,7 +515,7 @@ public class Ventana {
                             sext = false;
                         }else if(cb6.getY()>= en1.getY() && cb6.getX()>en1.getX()+en1.getWidth() && sext == true || cb6.getY()>= en1.getY() && cb6.getX()+cb6.getWidth()<en1.getX() && sext == true){
                             cb6.setVisible(false);
-                            score-=10;
+                            score-=20;
                             sext = false;
                             System.out.println(score);
                         }
@@ -518,7 +527,7 @@ public class Ventana {
                             sept = false;
                         }else if(cb7.getY()>= en1.getY() && cb7.getX()>en1.getX()+en1.getWidth() && sept == true || cb7.getY()>= en1.getY() && cb7.getX()+cb7.getWidth()<en1.getX() && sept == true){
                             cb7.setVisible(false);
-                            score-=10;
+                            score-=20;
                             sept = false;
                             System.out.println(score);
                         }
@@ -530,7 +539,7 @@ public class Ventana {
                             oct = false;
                         }else if(cb8.getY()>= en1.getY() && cb8.getX()>en1.getX()+en1.getWidth() && oct == true || cb8.getY()>= en1.getY() && cb8.getX()+cb8.getWidth()<en1.getX() && oct== true){
                             cb8.setVisible(false);
-                            score-=10;
+                            score-=20;
                             oct = false;
                             System.out.println(score);
                         }
@@ -542,7 +551,7 @@ public class Ventana {
                             non = false;
                         }else if(cb9.getY()>= en1.getY() && cb9.getX()>en1.getX()+en1.getWidth() && non == true || cb9.getY()>= en1.getY() && cb9.getX()+cb9.getWidth()<en1.getX() && non == true){
                             cb9.setVisible(false);
-                            score-=10;
+                            score-=20;
                             non = false;
                             System.out.println(score);
                         }
@@ -752,6 +761,12 @@ public class Ventana {
                 cards.show(principal, "7");
             }else if(e.getSource()==niveles){
                 cards.show(principal, "8");
+            }else if(e.getSource()==nivel1){
+                tiempo.setDelay(1000);
+                cards.show(principal,"3");
+            }else if(e.getSource()==nivel2){
+                tiempo.setDelay(500);
+                cards.show(principal,"3");
             }else if(e.getSource()==volver || e.getSource()==volver1 || e.getSource()==volver2 || e.getSource()==volver3 || e.getSource()==volver4){
                 if(e.getSource()==volver){
                     
